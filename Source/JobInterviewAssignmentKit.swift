@@ -15,22 +15,12 @@ public protocol Screen {
     var viewModel: ViewModelType! { get }
 }
 
-open class BasicScreen<VM: ViewModel>: UIViewController {
-    // swiftlint:disable:next force_cast
-    lazy var viewModel = VM(screen: self as! VM.ScreenType)
-}
-
 public protocol ViewModel {
     associatedtype ScreenType
 
     var screen: ScreenType! { get set }
-    init(screen: ScreenType)
 }
 
 open class BasicViewModel<ScreenType: Screen & AnyObject>: NSObject, ViewModel {
     public unowned var screen: ScreenType!
-
-    public required init(screen: ScreenType) {
-        self.screen = screen
-    }
 }
