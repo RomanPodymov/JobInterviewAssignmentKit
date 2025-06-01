@@ -19,8 +19,14 @@ public protocol ViewModel {
     associatedtype ScreenType
 
     var screen: ScreenType! { get set }
+    func ready()
+    func reloadData() async
 }
 
 open class BasicViewModel<ScreenType: Screen & AnyObject>: NSObject, ViewModel {
     public unowned var screen: ScreenType!
+    
+    open func ready() { }
+    
+    open func reloadData() async { }
 }
